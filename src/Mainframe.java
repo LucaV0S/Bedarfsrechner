@@ -16,12 +16,14 @@ public class Mainframe extends JFrame{
     private JLabel ageLabel;
     private JLabel schrittLabel;
     private JComboBox trainingCombobox;
-    private JCheckBox cardioBox;
     private JLabel trainingLabel;
     private JLabel questLabel;
     private JButton enterButton;
     private JButton genderButton;
     private JLabel genderLaber;
+    private JButton resetButton;
+    private JComboBox cardioComboBox;
+    private JButton beschreibungButton;
     //Instanzvariablen
     private int alter;
     private double gewicht;
@@ -31,6 +33,7 @@ public class Mainframe extends JFrame{
     private int trainingsTage;
     private boolean genderSwitch;
     int buttonCount=1;
+    int cardioTage;
     
 
 
@@ -50,9 +53,9 @@ public class Mainframe extends JFrame{
         stepField.setBackground(Color.WHITE);
         kgField.setBackground(Color.WHITE);
         ageField.setBackground(Color.WHITE);
-        cardioBox.setBackground(Color.WHITE);
         mainLabel.setBackground(Color.WHITE);
         genderButton.setBackground(Color.WHITE);
+        cardioComboBox.setBackground(Color.white);
 
 
         trainingCombobox.addActionListener(new ActionListener() {
@@ -78,27 +81,26 @@ public class Mainframe extends JFrame{
                 }
             }
         });
-        cardioBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(cardioBox.isContentAreaFilled()){
-                    checkCardio=true;
-                }else{
-                    checkCardio=false;
-                }
-            }
-        });
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double result;
-                alter=Integer.parseInt(ageField.getText());
-                groesse=Integer.parseInt(cmField.getText());
-                gewicht=Integer.parseInt(kgField.getText());
-                schritte=Integer.parseInt(stepField.getText());
-                result=rechner();
-                mainLabel.setText(String.valueOf(result));
-                clear();
+                try {
+                    double result;
+                    alter = Integer.parseInt(ageField.getText());
+                    groesse = Integer.parseInt(cmField.getText());
+                    gewicht = Integer.parseInt(kgField.getText());
+                    schritte = Integer.parseInt(stepField.getText());
+                    result = rechner();
+                    mainLabel.setText(String.valueOf(result));
+                }
+                catch (NumberFormatException error){
+                    mainLabel.setText("Fehler in der Eingabe, bitte geben Sie Ihre Werte erneut ein!");
+                    clear();
+                }
+
+
+
+
                 
             }
         });
@@ -114,11 +116,46 @@ public class Mainframe extends JFrame{
                     genderButton.setText("Nein");
                 } else{
                     genderSwitch=true;
-                    genderButton.setBackground(Color.GREEN);
+                    genderButton.setBackground(Color.GRAY);
                     buttonCount++;
                     genderButton.setText("Ja");
                 }
 
+            }
+        });
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
+        cardioComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String x=String.valueOf(cardioComboBox.getSelectedItem());
+                if (x.equals("1-Mal")){
+                    cardioTage=1;
+                } else if (x.equals("2-Mal")) {
+                    cardioTage=2;
+                }else if (x.equals("3-Mal")) {
+                    cardioTage=3;
+                }else if (x.equals("4-Mal")) {
+                    cardioTage=4;
+                }else if (x.equals("5-Mal")) {
+                    cardioTage=5;
+                }else if (x.equals("6-Mal")) {
+                    cardioTage=6;
+                }else if (x.equals("7-Mal")) {
+                    cardioTage=7;
+                } else if (x.equals("0-mal")) {
+                    cardioTage=0;
+                }
+            }
+        });
+        beschreibungButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new beschreibungFrame();
             }
         });
     }
@@ -138,11 +175,10 @@ public class Mainframe extends JFrame{
 
         //Sport
         double sport;
-        if(checkCardio){
-            sport=(double)trainingsTage*500;
-        }else {
-            sport=(double)trainingsTage*350;
-        }
+        double kcalCardio=200;
+        double kcalTraining=300;
+        sport=((kcalCardio*cardioTage)+(kcalTraining*trainingsTage))/7;
+
         //result
         double gesamtBedarf=grundumsatz+aktivitaet+sport;
         return gesamtBedarf;
@@ -153,5 +189,12 @@ public class Mainframe extends JFrame{
         ageField.setText("");
         cmField.setText("");
         stepField.setText("");
+        buttonCount=1;
+        genderButton.setBackground(Color.WHITE);
+        genderButton.setText("Nein");
+        cardioComboBox.setSelectedIndex(0);
+        trainingCombobox.setSelectedIndex(0);
+        mainLabel.setText("");
+
     }
 }

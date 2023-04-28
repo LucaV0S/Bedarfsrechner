@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Mainframe">
-  <grid id="27dc6" binding="mainframe" layout-manager="GridLayoutManager" row-count="12" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainframe" layout-manager="GridLayoutManager" row-count="13" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="850" height="319"/>
+      <xy x="20" y="20" width="850" height="354"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -105,20 +105,12 @@
           <text value="Anzahl der Trainingstage pro Woche:"/>
         </properties>
       </component>
-      <component id="3273b" class="javax.swing.JCheckBox" binding="cardioBox">
-        <constraints>
-          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="mit Cardio"/>
-        </properties>
-      </component>
       <component id="322f6" class="javax.swing.JLabel" binding="questLabel">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Trainieren sie an den trainingstagen mit cardio?"/>
+          <text value="Wie oft Trainieren sie zusätzlich Cardio?"/>
         </properties>
       </component>
       <component id="70e87" class="javax.swing.JButton" binding="enterButton">
@@ -158,6 +150,39 @@
         </constraints>
         <properties>
           <text value="Bist du eine Frau?"/>
+        </properties>
+      </component>
+      <component id="a73c4" class="javax.swing.JButton" binding="resetButton" default-binding="true">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Reset"/>
+        </properties>
+      </component>
+      <component id="a17aa" class="javax.swing.JComboBox" binding="cardioComboBox">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="0-Mal"/>
+            <item value="1-Mal"/>
+            <item value="2-Mal"/>
+            <item value="3-Mal"/>
+            <item value="4-Mal"/>
+            <item value="5-Mal"/>
+            <item value="6-Mal"/>
+            <item value="7-Mal"/>
+          </model>
+        </properties>
+      </component>
+      <component id="aeef2" class="javax.swing.JButton" binding="beschreibungButton" default-binding="true">
+        <constraints>
+          <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Beschreibung"/>
         </properties>
       </component>
     </children>
